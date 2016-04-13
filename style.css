@@ -1,0 +1,96 @@
+body {
+	background-color: blue;
+	color: white;
+}
+
+div#balloon {
+	width: 150px;
+}
+
+img {
+	width: 100%;
+}
+
+div#rounds {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+
+div#blowCounter {
+	position: absolute;
+	right: 20px;
+	top: 140px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+h3 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+button#tie {
+	position: absolute;
+	right: 20px;
+	top: 260px;
+	font-size: 40px;	
+	background: navy;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 60px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+div#currentScore {
+	position: absolute;
+	right: 20px;
+	top: 330px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+div#highScore {
+	position: absolute;
+	right: 20px;
+	top: 450px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+button#play {
+	position: absolute;
+	right: 20px;
+	top: 570px;
+	font-size: 40px;	
+	background: navy;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 60px;
+ 	width: 200px;
+ 	text-align: center;
+}
