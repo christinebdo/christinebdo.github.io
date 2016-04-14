@@ -9,6 +9,13 @@ var maxScore=0;
 var currentScore=0;
 var score;
 var rounds=20;
+//array size 10, max should be 10 blows before 100% probbaility of exploding
+var blowTime = ["", "", "", "", "", "", "", "", "", ""];
+var tieTime;
+var explodeTime;
+var startTime;
+var newRoundTime;
+
 
 function loadGame() {
 	balloon = document.getElementById("balloon");
@@ -21,6 +28,11 @@ function loadGame() {
 	boom = document.getElementById("boom");
 	boom.style.display="none";
 	
+	//timestamp of inital start
+	startTime = new Date();
+	startTime.getDate();
+	
+	
 	//maxBlows = 6;
 	//maxBlows = Math.floor(Math.random() * (9 - 6) + 6);
 	//alert(maxBlows);
@@ -28,6 +40,10 @@ function loadGame() {
 
 function blow() {
 
+	//takes time stamp immediately, also before currentBlow is updated
+	blowTime[currentBlow] = new Date();
+	blowTime[currentBlow].getDate();
+	
 	//returns what???
 	maxBlows = Math.floor(Math.random()*(10 - 1) + 1);
 	//alert(maxBlows);
@@ -48,6 +64,7 @@ function blow() {
 		score.innerHTML = currentScore;
 	
 	} else {
+	
 		balloon.style.display = 'none';
 		boom.style.display="block";
 		currentScore = 0;
@@ -78,7 +95,13 @@ function other() {
 
 function tieBalloon() {
 	
+	
 	if(currentBlow > maxBlows){
+		
+		//timestamp of explosion
+		explodeTime = new Date();
+		explodeTime.getDate();
+		
 		//alert("sorry you lost");
 		rounds = rounds - 1;
 		if(rounds == 0){
@@ -87,6 +110,11 @@ function tieBalloon() {
 		round.innerHTML = rounds;
 		resetGame();
 	} else if(currentBlow <= maxBlows) {
+		
+		//timestamp of tieBalloon
+		tieTime = new Date();
+		tieTime.getDate();
+		
 		//alert('You win, your score is '+currentScore);
 			maxScore = maxScore + currentScore;
 			max.innerHTML = maxScore;
@@ -111,7 +139,13 @@ function resetGame() {
 	count.innerHTML = 0;
 	currentScore = 0;
 	score.innerHTML = 0;
-
+	
+	//new round start time
+	newRoundTime = new Date();
+	//need to collect data for this round before resetGame
+	blowTime = ["", "", "", "", "", "", "", "", "", ""];
+	tieTime = "";
+	explodeTime = "";
 }
 
 
