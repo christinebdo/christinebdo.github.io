@@ -14,6 +14,7 @@ var tieTime;
 var explodeTime;
 var startTime;
 var newRoundTime;
+
 function loadGame() {
 	balloon = document.getElementById("balloon");
 	balloon.style.width = "50px";	
@@ -82,6 +83,8 @@ function other() {
 			rounds = 20;
 			alert('Thank you for playing, your score is: '+maxScore);
 			resetGame();
+			maxScore = 0;
+			max.innerHTML = maxScore;
 		}
 		round.innerHTML = rounds;
 		resetGame();
@@ -97,9 +100,6 @@ function tieBalloon() {
 		
 		//alert("sorry you lost");
 		
-		if(rounds == 0){
-			//alert("Game over")
-		}
 		
 	} else if(currentBlow <= maxBlows) {
 		
@@ -110,15 +110,15 @@ function tieBalloon() {
 		//alert('You win, your score is '+currentScore);
 		maxScore = maxScore + currentScore;
 		max.innerHTML = maxScore;
-		if(rounds == 0){
-			//alert("Game over")
-		}
+
 	}
 	rounds = rounds - 1;
 	if (rounds == 0) {
 		alert('Thank you for playing, your score is: '+maxScore);
 		resetGame();
 		rounds = 20;
+		maxScore = 0;
+		max.innerHTML = maxScore;
 	}
 	round.innerHTML = rounds;
 	resetGame();
@@ -138,6 +138,7 @@ function resetGame() {
 	currentScore = 0;
 	score.innerHTML = 0;
 	round.innerHTML = rounds;
+
 	//rounds = 20;
 	//rounds.innerHTML = rounds;
 	
