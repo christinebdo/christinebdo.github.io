@@ -123,11 +123,7 @@ function tieBalloon() {
 	}
 	rounds = rounds - 1;
 	round.innerHTML = rounds;
-	if(rounds!=0){
-		resetGame();
-	} else{
-		alert('Game over! Your score is' + currentScore);
-	}
+	resetGame();
 	
 	
 }
