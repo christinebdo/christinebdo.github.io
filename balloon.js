@@ -1,4 +1,3 @@
-
 var balloon;
 var maxBlows;
 var currentBlow = 0;
@@ -15,8 +14,6 @@ var tieTime;
 var explodeTime;
 var startTime;
 var newRoundTime;
-
-
 function loadGame() {
 	balloon = document.getElementById("balloon");
 	balloon.style.width = "50px";	
@@ -37,9 +34,7 @@ function loadGame() {
 	//maxBlows = Math.floor(Math.random() * (9 - 6) + 6);
 	//alert(maxBlows);
 }
-
 function blow() {
-
 	//takes time stamp immediately, also before currentBlow is updated
 	blowTime[currentBlow] = new Date();
 	blowTime[currentBlow].getDate();
@@ -53,7 +48,6 @@ function blow() {
 	} else {
 	currentScore = (currentScore * 2);
 	}
-
 	if (currentBlow <= maxBlows) {  	
 		var blowAmount = 50;
 		var balloonWidth = parseInt(balloon.style.width);
@@ -75,11 +69,9 @@ function blow() {
 		}
 		round.innerHTML = rounds;
 		resetGame();*/
-
 		setTimeout(other, 1500);
 	}
 }
-
 function other() {
 	/*balloon.style.display = 'none';
 		boom.style.display="block";
@@ -87,12 +79,13 @@ function other() {
 		//alert("Sorry balloon popped");*/
 		rounds = rounds - 1;
 		if(rounds == 0){
-			//alert("Game over")
+			rounds = 20;
+			alert('Thank you for playing, your score is: '+maxScore);
+			resetGame();
 		}
 		round.innerHTML = rounds;
 		resetGame();
 }
-
 function tieBalloon() {
 	
 	
@@ -122,12 +115,16 @@ function tieBalloon() {
 		}
 	}
 	rounds = rounds - 1;
+	if (rounds == 0) {
+		alert('Thank you for playing, your score is: '+maxScore);
+		resetGame();
+		rounds = 20;
+	}
 	round.innerHTML = rounds;
 	resetGame();
 	
 	
 }
-
 function resetGame() {
 	balloon = document.getElementById("balloon");
 	balloon.style.width = "50px";	
@@ -140,6 +137,9 @@ function resetGame() {
 	count.innerHTML = 0;
 	currentScore = 0;
 	score.innerHTML = 0;
+	round.innerHTML = rounds;
+	//rounds = 20;
+	//rounds.innerHTML = rounds;
 	
 	//new round start time
 	newRoundTime = new Date();
@@ -148,6 +148,4 @@ function resetGame() {
 	tieTime = "";
 	explodeTime = "";
 }
-
-
 	
