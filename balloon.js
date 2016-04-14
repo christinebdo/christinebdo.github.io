@@ -103,12 +103,11 @@ function tieBalloon() {
 		explodeTime.getDate();
 		
 		//alert("sorry you lost");
-		rounds = rounds - 1;
+		
 		if(rounds == 0){
 			//alert("Game over")
 		}
-		round.innerHTML = rounds;
-		resetGame();
+		
 	} else if(currentBlow <= maxBlows) {
 		
 		//timestamp of tieBalloon
@@ -116,15 +115,21 @@ function tieBalloon() {
 		tieTime.getDate();
 		
 		//alert('You win, your score is '+currentScore);
-			maxScore = maxScore + currentScore;
-			max.innerHTML = maxScore;
-			rounds = rounds - 1;
-			round.innerHTML = rounds;
-			if(rounds == 0){
-				//alert("Game over")
-			}
-			resetGame();
+		maxScore = maxScore + currentScore;
+		max.innerHTML = maxScore;
+		if(rounds == 0){
+			//alert("Game over")
+		}
 	}
+	rounds = rounds - 1;
+	round.innerHTML = rounds;
+	if(rounds!=0){
+		resetGame();
+	} else{
+		alert('Game over! Your score is' + currentScore);
+	}
+	
+	
 }
 
 function resetGame() {
