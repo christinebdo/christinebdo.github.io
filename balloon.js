@@ -13,21 +13,6 @@ function saveResult(args, cb) {
         cb();
     });
 
-  /*
-    $.post('/save', {
-        sessionToken: APP.token,
-        count: count,
-        score: score,
-        playerScore: playerScore,
-        blowTime: [blowTime],
-        tieTime: tieTime,
-        explodeTime: explodeTime,
-        startTime: startTime,
-        newRoundTime: newRoundTime
-    }, function(data) {
-        console.log(data);
-    });
-    */
 }
 
 
@@ -163,9 +148,9 @@ function tieBalloon() {
 function resetGame() {
     //send data
     saveResult({
-        count: currentBlow, // set this to actual count
-        score: currentScore, // set this to actual score
-        maxScore: maxScore,
+        count: currentBlow, 
+        score: currentScore,
+        totalScore: maxScore,
         blowTime: blowTime,
         tieTime: tieTime,
         explodeTime: explodeTime,
