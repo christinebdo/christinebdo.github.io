@@ -7,15 +7,19 @@ $.get('/uniqueToken', function(data) {
 });
 
 $.post('/save', {
+
+    var collection = db.get('balloon-data');
+
     sessionToken: APP.token,
-    count: 1,
-    score: 1,
-    playerScore: 1,
-    blowTime: [Date.now()],
-    tieTime: Date.now(),
-    explodeTime: Date.now(),
-    startTime: Date.now(),
-    newRoundTime: Date.now()
+    count: count,
+    score: score,
+    playerScore: playerScore,
+    blowTime: [blowTime],
+    tieTime: tieTime,
+    explodeTime: explodeTime,
+    startTime: startTime,
+    newRoundTime: newRoundTime
 }, function(data) {
     console.log(data);
 })
+

@@ -1,3 +1,37 @@
+var APP = {};
+
+$.get('/uniqueToken', function(data) {
+    APP.token = data.token;
+});
+
+function saveResult(args, cb) {
+    args.sessionToken = APP.token;
+
+    console.log(args);
+    $.post('/save', args, function(data) {
+        console.log(data);
+        cb();
+    });
+
+  /*
+    $.post('/save', {
+        sessionToken: APP.token,
+        count: count,
+        score: score,
+        playerScore: playerScore,
+        blowTime: [blowTime],
+        tieTime: tieTime,
+        explodeTime: explodeTime,
+        startTime: startTime,
+        newRoundTime: newRoundTime
+    }, function(data) {
+        console.log(data);
+    });
+    */
+}
+
+
+
 var balloon;
 var maxBlows;
 var currentBlow = 0;
@@ -125,28 +159,41 @@ function tieBalloon() {
 	
 	
 }
-function resetGame() {
-	balloon = document.getElementById("balloon");
-	balloon.style.width = "50px";	
-	count = document.getElementById("count");	
-	
-	boom = document.getElementById("boom");
-	boom.style.display="none";
-	balloon.style.display ="block";
-	currentBlow = 0;
-	count.innerHTML = 0;
-	currentScore = 0;
-	score.innerHTML = 0;
-	round.innerHTML = rounds;
 
-	//rounds = 20;
-	//rounds.innerHTML = rounds;
-	
-	//new round start time
-	newRoundTime = new Date();
-	//need to collect data for this round before resetGame
-	blowTime = ["", "", "", "", "", "", "", "", "", ""];
-	tieTime = "";
-	explodeTime = "";
+function resetGame() {
+    //send data
+    saveResult({
+        count: currentBlow, // set this to actual count
+        score: currentScore, // set this to actual score
+        maxScore: maxScore,
+        blowTime: blowTime,
+        tieTime: tieTime,
+        explodeTime: explodeTime,
+        startTime: startTime,
+        newRoundTime: newRoundTime
+    }, function() {
+        balloon = document.getElementById("balloon");
+        balloon.style.width = "50px";	
+        count = document.getElementById("count");	
+        
+        boom = document.getElementById("boom");
+        boom.style.display="none";
+        balloon.style.display ="block";
+        currentBlow = 0;
+        count.innerHTML = 0;
+        currentScore = 0;
+        score.innerHTML = 0;
+        round.innerHTML = rounds;
+
+        //rounds = 20;
+        //rounds.innerHTML = rounds;
+        
+        //new round start time
+        newRoundTime = new Date();
+        //need to collect data for this round before resetGame
+        blowTime = ["", "", "", "", "", "", "", "", "", ""];
+        tieTime = "";
+        explodeTime = "";     
+    });
 }
 	

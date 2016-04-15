@@ -4,8 +4,9 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Result = require('./result');
+var url = 'mongodb://heroku_35z39lh9:nm78jb6sj8hoqdl9sl21guor4u@ds011321.mlab.com:11321/heroku_35z39lh9';
+mongoose.connect(url);
 
-mongoose.connect('mongodb://localhost/balloon');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
