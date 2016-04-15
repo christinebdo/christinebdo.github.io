@@ -81,6 +81,18 @@ div#highScore {
  	width: 200px;
  	text-align: center;
 }
+div#scoreBoard {
+	position: absolute;
+	right: 20px;
+	top: 570px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
 
 /*
 button#play {
