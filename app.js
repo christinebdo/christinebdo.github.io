@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('public'));
 
-app.get('/index', function(req, res) {
-    res.sendfile('index.html'); 
+app.get('/', function(req, res) {
+    res.render('index', {});
 });
 
 app.get('/script.js', function(req, res) {
