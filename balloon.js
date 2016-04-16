@@ -155,7 +155,8 @@ function resetGame() {
         tieTime: tieTime,
         explodeTime: explodeTime,
         startTime: startTime,
-        newRoundTime: newRoundTime
+        newRoundTime: newRoundTime,
+        maxScore: macScore
     }, function() {
         balloon = document.getElementById("balloon");
         balloon.style.width = "50px";	
