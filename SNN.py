@@ -1,32 +1,28 @@
-# Tutorial 18: Networks
-
-# To help organize larger models, you can make Networks inside of the main
-# model Network.  
 #
-# In the graphic interface, the items inside these Networks are not shown
-# by default.  If you double-click on a Network you can show (or hide) its
-# internals.
 
-# Nengo also comes with a collection of pre-made Networks that can help
-# simplify the creation of large models.  For example, the code below uses a
-# nengo.networks.EnsembleArray, which is a shortcut for creating a set of
-# identical Ensembles.  It also provides a convenient "input" and "output"
-# components that let you easily connect to or from all of the Ensembles at
-# once.
 
 import numpy as np
 import nengo
 from nengo.processes import WhiteSignal
 
 def average(a):
-    return sum(a)/len(a);
-
+    tieVal = .1
+    for i in range(0, 20):
+        if (a[i] >= tieVal):
+            tieVal = tieVal + .1;
+        else:
+            tieVal = tieVal - .1;
+    
+    return tieVal
+    
 
 model = nengo.Network()
 with model:
     # -- input and pre popluation
-    inp = nengo.Node([0.1, 0.2, 0.3, 0.4, 0.5])
-    pre = nengo.Ensemble(120, dimensions=5)
+    inp = nengo.Node([0.7, 0.4, 0.4, 0.3, 0.4, 0.3, 0.2, 0.4, 0.5, 0.2, 0.3, 0.3, 0.3, 0.2, 0.3, 0.2, 0.2, 0.2, 0.3, 0.4])
+    
+    
+    pre = nengo.Ensemble(300, dimensions=20)
     nengo.Connection(inp, pre)
     
     # -- post population
@@ -36,6 +32,7 @@ with model:
     #stim_b = nengo.Node([0, 0, 0, 0, 0])
     average_ensemble = nengo.Ensemble(n_neurons=100, dimensions=1)
     nengo.Connection(inp, average_ensemble, function=average, synapse=None)
+    
     
     
     # -- error population
@@ -82,4 +79,5 @@ with model:
     #part2 = nengo.networks.EnsembleArray(n_neurons=50, n_ensembles=10)
     
     #nengo.Connection(c, part2.input)
+    
     
