@@ -5,7 +5,7 @@ import numpy as np
 import nengo
 
 def optimal(a):
-    tieVal = .1
+    tieVal = .3 #average clicks human brain starts at
     for i in range(0, 100):
         if (a[i] >= tieVal):
             if tieVal >= .1 or tieVal < 1:
@@ -22,11 +22,11 @@ with model:
     # -- input and pre popluation
     inp = nengo.Node([0.7, 0.4, 0.4, 0.3, 0.4, 0.3, 0.2, 0.4, 0.5, 0.2, 0.3, 0.3, 
         0.3, 0.2, 0.3, 0.2, 0.2, 0.2, 0.3, 0.4, 0.4, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 
-        0.1, 0.2, 0.3, 0.4, 0.3, 0.3, 0.4, 0.4, 0.3, 0.3, 0.5, 0.4, 0.4, 0.5, 0.7, 
-        0.6, 0.2, 0.5, 0.5, 0.5, 0.2, 0.4, 0.3, 0.4, 0.3, 0.4, 0.4, 0.4, 0.3, 0.4, 
-        0.3, 0.3, 0.4, 0.4, 0.2, 0.3, 0.3, 0.1, 0.4, 0.2, 0.3, 0.1, 0.4, 0.2, 0.4, 
-        0.4, 0.1, 0.4, 0.3, 0.3, 0.2, 0.3, 0.3, 0.4, 0.2, 0.1, 0.3, 0.2, 0.2, 0, 
-        0.3, 0, 0.1, 0.1, 0.1, 0.3, 0.3, 0, 0.2, 0.1, 0.2, 0.3, 0.4])
+      0.1, 0.2, 0.3, 0.4, 0.3, 0.3, 0.4, 0.4, 0.3, 0.3, 0.5, 0.4, 0.4, 0.5, 0.7, 
+      0.6, 0.2, 0.5, 0.5, 0.5, 0.2, 0.4, 0.3, 0.4, 0.3, 0.4, 0.4, 0.4, 0.3, 0.4, 
+      0.3, 0.3, 0.4, 0.4, 0.2, 0.3, 0.3, 0.1, 0.4, 0.2, 0.3, 0.1, 0.4, 0.2, 0.4, 
+      0.4, 0.1, 0.4, 0.3, 0.3, 0.2, 0.3, 0.3, 0.4, 0.2, 0.1, 0.3, 0.2, 0.2, 0, 
+      0.3, 0, 0.1, 0.1, 0.1, 0.3, 0.3, 0, 0.2, 0.1, 0.2, 0.3, 0.4])
     
     
     pre = nengo.Ensemble(500, dimensions=100)
@@ -51,7 +51,7 @@ with model:
                             learning_rule_type=nengo.PES())
     nengo.Connection(error, conn.learning_rule)
     
-    # -- inhibit error after 40 seconds
+    # -- inhibit error after 10 seconds
     inhib = nengo.Node(lambda t: 2.0 if t > 10.0 else 0.0)
     nengo.Connection(inhib, error.neurons, transform=[[-1]] * error.n_neurons)
     
@@ -61,5 +61,7 @@ with model:
     post_p = nengo.Probe(post, synapse=0.01)
     error_p = nengo.Probe(error, synapse=0.03)
 
+    
+    
     
     
